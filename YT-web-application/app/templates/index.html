@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Downloader - Professional Video & Audio Downloader</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>🎬 YouTube Downloader</h1>
+            </div>
+            <div class="nav-links">
+                <a href="/" class="nav-link active">Home</a>
+                <a href="/about" class="nav-link">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="hero">
+                <h2>Download YouTube Videos & Audio</h2>
+                <p>Fast, reliable, and easy-to-use YouTube content downloader</p>
+            </section>
+
+            <section class="download-section">
+                <div class="card">
+                    <form id="downloadForm">
+                        <!-- URL Input -->
+                        <div class="form-group">
+                            <label for="videoUrl">YouTube Video URL</label>
+                            <input 
+                                type="text" 
+                                id="videoUrl" 
+                                name="url" 
+                                placeholder="https://www.youtube.com/watch?v=..."
+                                required
+                            >
+                        </div>
+
+                        <!-- Format Selection -->
+                        <div class="form-group">
+                            <label>Download Format</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="format" value="video" checked>
+                                    <span>Video</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="format" value="audio">
+                                    <span>Audio (MP3)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Video Quality Selection -->
+                        <div class="form-group quality-group" id="videoQualityGroup">
+                            <label for="videoQuality">Video Quality</label>
+                            <select id="videoQuality" name="videoQuality">
+                                {% for quality in video_qualities %}
+                                <option value="{{ quality.value }}">{{ quality.label }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Audio Quality Selection -->
+                        <div class="form-group quality-group hidden" id="audioQualityGroup">
+                            <label for="audioQuality">Audio Quality</label>
+                            <select id="audioQuality" name="audioQuality">
+                                {% for quality in audio_qualities %}
+                                <option value="{{ quality.value }}">{{ quality.label }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Optional Filename -->
+                        <div class="form-group">
+                            <label for="filename">Custom Filename (Optional)</label>
+                            <input 
+                                type="text" 
+                                id="filename" 
+                                name="filename" 
+                                placeholder="Leave empty to use video title"
+                            >
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="button-group">
+                            <button type="button" id="infoBtn" class="btn btn-secondary">
+                                Get Video Info
+                            </button>
+                            <button type="submit" id="downloadBtn" class="btn btn-primary">
+                                Download
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Video Info Display -->
+                    <div id="videoInfo" class="video-info hidden">
+                        <h3>Video Information</h3>
+                        <div class="info-content">
+                            <img id="videoThumbnail" src="" alt="Video thumbnail">
+                            <div class="info-details">
+                                <p><strong>Title:</strong> <span id="videoTitle"></span></p>
+                                <p><strong>Uploader:</strong> <span id="videoUploader"></span></p>
+                                <p><strong>Duration:</strong> <span id="videoDuration"></span></p>
+                                <p><strong>Views:</strong> <span id="videoViews"></span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Display -->
+                    <div id="progressSection" class="progress-section hidden">
+                        <h3>Download Progress</h3>
+                        <div class="progress-bar">
+                            <div id="progressFill" class="progress-fill"></div>
+                            <span id="progressText" class="progress-text">0%</span>
+                        </div>
+                        <div class="progress-details">
+                            <p><strong>Status:</strong> <span id="statusText">Preparing...</span></p>
+                            <p><strong>Speed:</strong> <span id="speedText">N/A</span></p>
+                            <p><strong>Size:</strong> <span id="sizeText">0 MB / 0 MB</span></p>
+                            <p><strong>ETA:</strong> <span id="etaText">N/A</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Success/Error Messages -->
+                    <div id="messageBox" class="message-box hidden"></div>
+                </div>
+            </section>
+
+            <section class="features">
+                <h2>Features</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎥</div>
+                        <h3>High Quality Video</h3>
+                        <p>Download videos up to 1080p Full HD quality</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎵</div>
+                        <h3>MP3 Audio</h3>
+                        <p>Extract audio in high-quality MP3 format</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Fast Downloads</h3>
+                        <p>Optimized for maximum download speed</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Progress Tracking</h3>
+                        <p>Real-time progress updates during download</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 YouTube Downloader. All rights reserved.</p>
+            <p>Made with ❤️ using Flask and yt-dlp</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
