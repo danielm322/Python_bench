@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=YouTube Downloader
+Comment=Download YouTube videos and audio with ease
+Exec=/bin/bash -c "cd /home/monlef/VSProjects/Python_bench/YT-web-application && ./start.sh"
+Icon=/home/monlef/VSProjects/Python_bench/YT-web-application/app/static/favicon.ico
+Terminal=true
+Categories=Network;AudioVideo;Utility;
+Keywords=youtube;download;video;audio;mp3;
+StartupNotify=true

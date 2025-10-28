@@ -13,7 +13,7 @@ A modern, professional web application for downloading YouTube videos and audio 
 - **Real-time Progress**: Live progress tracking with download speed, ETA, and completion percentage
 - **Video Information**: Preview video details (title, thumbnail, duration, views) before downloading
 - **Custom Filenames**: Optionally specify custom filenames for downloads
-- **Modern UI**: Responsive, professional interface with dark theme
+- **Modern UI**: Responsive, professional interface with clean light theme
 - **Error Handling**: Comprehensive error handling with user-friendly messages
 - **Modular Architecture**: Clean, maintainable code following Python best practices
 
@@ -88,7 +88,39 @@ MAX_CONTENT_LENGTH=524288000
 
 ## 🎮 Usage
 
-### Starting the Application
+### Quick Start (Recommended)
+
+Use the provided start script that handles activation and browser launch:
+
+```bash
+./start.sh
+```
+
+This will:
+- Activate the virtual environment
+- Start the Flask server
+- Automatically open your browser to `http://localhost:5000`
+- Display server logs and status
+
+Press `Ctrl+C` to stop the server gracefully.
+
+### Linux Desktop Shortcut
+
+For even easier access, install a desktop shortcut:
+
+```bash
+./install-desktop-shortcut.sh
+```
+
+After installation, launch YouTube Downloader from:
+- Your application menu (Network or Audio & Video category)
+- Desktop search (type "YouTube Downloader")
+
+See [DESKTOP_SHORTCUT.md](DESKTOP_SHORTCUT.md) for detailed installation options.
+
+### Manual Start
+
+Alternatively, start manually:
 
 ```bash
 python run.py

@@ -5,6 +5,77 @@ All notable changes to the YouTube Downloader project will be documented in this
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.4] - 2025-10-28
+
+### Added
+
+- **Linux Desktop Shortcut**: Created `.desktop` file for easy application launching
+  - Installs to application menu (Network/Audio & Video categories)
+  - Can be placed on desktop for quick access
+  - Automated installation script (`install-desktop-shortcut.sh`)
+  - Comprehensive documentation in `DESKTOP_SHORTCUT.md`
+  - Follows freedesktop.org Desktop Entry Specification
+  - Includes proper icon, categories, and keywords for searchability
+
+### Changed
+
+- **UI Theme Overhaul**: Converted from dark theme to modern professional light theme
+  - Updated color scheme: Light blue primary (#2563eb), clean white surfaces (#ffffff), subtle gray backgrounds (#f8fafc)
+  - Enhanced readability with improved contrast ratios
+  - Modern gradient accents on navigation, buttons, and progress bars
+  - Professional shadow system for depth and visual hierarchy
+  - Improved hover states and interactive feedback
+  - Added shimmer animation to progress bars
+  - Better visual consistency across all components
+  - Responsive design maintained with enhanced mobile/tablet experience
+  - Footer kept with subtle dark gradient for visual grounding
+
+### Improved
+
+- Enhanced button styling with gradient effects and better shadows
+- Better form input feedback with focus rings
+- Improved card hover effects with smooth transitions
+- More professional message boxes (success/error states)
+- Enhanced feature cards with modern styling
+
+### Documentation
+
+- Added `DESKTOP_SHORTCUT.md` with installation guide and troubleshooting
+- Added `THEME_UPDATE_v1.0.4.md` with detailed theme conversion documentation
+- Updated `README.md` with desktop shortcut installation instructions
+
+## [1.0.3] - 2025-10-26
+
+### Added
+
+- **Auto Browser Launch**: `start.sh` now automatically opens the application in the default web browser
+  - Supports Linux (xdg-open, gnome-open), macOS (open), and Windows Git Bash (start)
+  - Falls back to manual URL display if no browser command is detected
+- **Server Readiness Check**: Script waits for Flask server to be fully ready before opening browser
+  - Uses curl to test server availability
+  - 15-second timeout with retry logic
+- **Graceful Shutdown**: Proper signal handling for clean server shutdown
+  - Captures SIGINT (Ctrl+C), SIGTERM, and EXIT signals
+  - Kills server process and cleans up orphaned processes
+  - Displays shutdown confirmation message
+- **Process Management**: Tracks server PID and displays runtime information
+  - Shows server URL and Process ID when running
+  - Background execution with proper wait handling
+
+### Changed
+
+- Enhanced `start.sh` script with better user experience
+- Server now runs in background to allow browser launching
+- Improved error messages and status indicators
+
+### Documentation
+
+- Added `START_SCRIPT_DOCS.md` with comprehensive documentation
+  - Script flow diagrams
+  - Troubleshooting guide
+  - Technical details on signal handling
+  - Browser detection logic
+
 ## [1.0.2] - 2025-10-26
 
 ### Fixed
