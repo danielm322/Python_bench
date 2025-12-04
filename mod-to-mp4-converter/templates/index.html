@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convert MOD video files to MP4 format with customizable quality settings. Fast, easy, and free online video converter.">
+    <meta name="keywords" content="MOD to MP4, video converter, MOD converter, video conversion">
+    <title>MOD to MP4 Converter - Premium Video Conversion</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🎬 MOD to MP4 Converter</h1>
+            <p>Convert your MOD video files to MP4 format with premium quality</p>
+        </header>
+
+        <!-- Main Card -->
+        <main class="card">
+            <!-- Upload Zone -->
+            <div class="upload-zone" id="uploadZone">
+                <div class="upload-icon">📁</div>
+                <div class="upload-text">
+                    <h3>Drop your MOD file here</h3>
+                    <p>or click to browse</p>
+                    <input type="file" id="fileInput" accept=".mod" hidden>
+                </div>
+                <div class="file-info" id="fileInfo">
+                    <p>Selected file: <span class="file-name" id="fileName"></span></p>
+                </div>
+            </div>
+
+            <!-- Quality Selection -->
+            <section class="quality-section">
+                <h3>Select Output Quality</h3>
+                <div class="quality-options">
+                    {% for key, preset in quality_presets.items() %}
+                    <div class="quality-option">
+                        <input type="radio" id="quality-{{ key }}" name="quality" value="{{ key }}" 
+                               {% if key == 'medium' %}checked{% endif %}>
+                        <label for="quality-{{ key }}" class="quality-label">
+                            <div class="quality-name">{{ key.capitalize() }}</div>
+                            <div class="quality-desc">{{ preset.description }}</div>
+                        </label>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <!-- Convert Button -->
+            <button class="btn btn-primary btn-block" id="convertBtn" disabled>
+                Select a file to convert
+            </button>
+
+            <!-- Progress Section -->
+            <div class="progress-section" id="progressSection">
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+                </div>
+                <p class="text-center" id="progressText">Converting your video...</p>
+            </div>
+
+            <!-- Status Messages -->
+            <div id="statusContainer"></div>
+
+            <!-- Download Button -->
+            <a href="#" class="btn btn-secondary btn-block hidden mt-2" id="downloadBtn" download>
+                ⬇️ Download Converted Video
+            </a>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Powered by FFmpeg • Built with Flask</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
